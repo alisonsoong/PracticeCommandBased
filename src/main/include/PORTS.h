@@ -13,3 +13,16 @@
  * command-specific namespaces within this header, which can then be used where
  * they are needed.
  */
+
+
+static const int LEFT_DRIVE_ENCODER_YELLOW_PWM_PORT      = 6;
+static const int RIGHT_DRIVE_ENCODER_YELLOW_PWM_PORT     = 8;
+static const int LEFT_DRIVE_ENCODER_RED_PWM_PORT         = 7;
+static const int RIGHT_DRIVE_ENCODER_RED_PWM_PORT        = 9;
+
+// Drive Motors
+static const int RIGHT_DRIVE_MOTOR_ID                   = 0;
+static const int RIGHT_DRIVE_MOTOR_2_ID                  = 1;
+static const int LEFT_DRIVE_MOTOR_ID                    = 2;
+static const int LEFT_DRIVE_MOTOR_2_ID                   = 3;
+
