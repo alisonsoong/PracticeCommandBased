@@ -26,3 +26,6 @@ static const int RIGHT_DRIVE_MOTOR_2_ID                  = 1;
 static const int LEFT_DRIVE_MOTOR_ID                    = 2;
 static const int LEFT_DRIVE_MOTOR_2_ID                   = 3;
 
+// Joysticks
+static const int LEFT_JOY_USB_PORT                       = 0;
+static const int RIGHT_JOY_USB_PORT                      = 1;

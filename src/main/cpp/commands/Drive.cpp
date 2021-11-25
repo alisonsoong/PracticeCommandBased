@@ -4,31 +4,31 @@
 
 #include "commands/Drive.h"
 #include "PORTS.h"
+#include "ControlBoard.h"
 
-Drive::Drive(Drivetrain* drivetrain)
-    : drivetrain_{drivetrain} {
-    leftPrimary_  = new WPI_TalonFX(LEFT_DRIVE_MOTOR_ID);
-	rightPrimary_  = new WPI_TalonFX(LEFT_DRIVE_MOTOR_2_ID);
-	leftSecondary_ = new WPI_TalonFX(RIGHT_DRIVE_MOTOR_ID);
-	rightSecondary_ = new WPI_TalonFX(RIGHT_DRIVE_MOTOR_2_ID);
-    leftPrimary_->Set(ControlMode::PercentOutput, 0.0);
-    rightPrimary_->Set(ControlMode::PercentOutput, 0.0);
-    leftSecondary_->Follow(*leftPrimary_);
-    rightSecondary_->Follow(*rightPrimary_);
+Drive::Drive(Drivetrain* drivetrain, ControlBoard* humanControl) {
+    drivetrain_ = drivetrain;
+    humanControl_ = humanControl;
+    
     
 }
 
-// void Drive::Initialize() {
+void Drive::Initialize() {
 
-// }
+}
 
-// void Drive::Execute() {
-	
-// }
+void Drive::Execute() {
+    double leftJoyX = humanControl_->GetJoystickValue(ControlBoard::Joysticks::kLeftJoy, ControlBoard::Axes::kX);
+    double rightJoyX = humanControl_->GetJoystickValue(ControlBoard::Joysticks::kRightJoy, ControlBoard::Axes::kX);
+    double leftJoyY = humanControl_->GetJoystickValue(ControlBoard::Joysticks::kLeftJoy, ControlBoard::Axes::kY);
+    double rightJoyY = humanControl_->GetJoystickValue(ControlBoard::Joysticks::kRightJoy, ControlBoard::Axes::kY);
+    
+	drivetrain_->TankDrive(leftJoyY, rightJoyY);
+}
 
-// bool Drive::IsFinished() {
-// 	return false;
-// }
+bool Drive::IsFinished() {
+	return false;
+}
 
 // void Drive::End() {
 

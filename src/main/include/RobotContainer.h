@@ -5,9 +5,12 @@
 #pragma once
 
 #include <frc2/command/Command.h>
+#include "PORTS.h"
+#include <frc/WPILib.h>
 
 #include "commands/Drive.h"
 #include "subsystems/Drivetrain.h"
+#include "ControlBoard.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -26,6 +29,7 @@ class RobotContainer {
   // The robot's subsystems and commands are defined here...
   Drivetrain drivetrain_;
   Drive drive_;
+  ControlBoard humanControl_;
 
   void ConfigureButtonBindings();
 };

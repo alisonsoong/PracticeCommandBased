@@ -4,7 +4,7 @@
 
 #include "RobotContainer.h"
 
-RobotContainer::RobotContainer() : drive_(&drivetrain_) {
+RobotContainer::RobotContainer() : drive_(&drivetrain_, &humanControl_) {
   // Initialize all of your commands and subsystems here
 
   // Configure the button bindings
@@ -13,9 +13,10 @@ RobotContainer::RobotContainer() : drive_(&drivetrain_) {
 
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
+
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
-  return &drive_;
+  // return &drive_;
 }

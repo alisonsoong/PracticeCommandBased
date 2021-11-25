@@ -7,8 +7,7 @@
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 #include <subsystems/Drivetrain.h>
-
-
+#include "ControlBoard.h"
 #include <frc/WPILib.h>
 #include <AHRS.h>
 #include "ctre/Phoenix.h"
@@ -37,14 +36,15 @@ class Drive
    *
    * @param drivetrain Subsystem for drivetrain
    */
-  explicit Drive(Drivetrain* drivetrain);
-  // void Initialize() override;
-	// void Execute() override;
-	// bool IsFinished() override;
+  explicit Drive(Drivetrain* drivetrain, ControlBoard* humanControl);
+  void Initialize() override;
+	void Execute() override;
+	bool IsFinished() override;
 	// void End() override;
 	// void Interrupted() override;
 
  private:
   Drivetrain* drivetrain_;
-  WPI_TalonFX *leftPrimary_, *rightPrimary_, *leftSecondary_, *rightSecondary_;
+  ControlBoard* humanControl_;
+  
 };
