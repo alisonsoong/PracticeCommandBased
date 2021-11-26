@@ -5,12 +5,12 @@
 #include "subsystems/Drivetrain.h"
 #include "PORTS.h"
 
-Drivetrain::Drivetrain() {
+Drivetrain::Drivetrain(WPI_TalonFX *leftPrimary, WPI_TalonFX *rightPrimary, WPI_TalonFX *leftSecondary, WPI_TalonFX *rightSecondary) {
   // Implementation of subsystem constructor goes here.
-  leftPrimary_  = new WPI_TalonFX(LEFT_DRIVE_MOTOR_ID);
-	rightPrimary_  = new WPI_TalonFX(LEFT_DRIVE_MOTOR_2_ID);
-	leftSecondary_ = new WPI_TalonFX(RIGHT_DRIVE_MOTOR_ID);
-	rightSecondary_ = new WPI_TalonFX(RIGHT_DRIVE_MOTOR_2_ID);
+  leftPrimary_  = leftPrimary;
+	rightPrimary_  = rightPrimary;
+	leftSecondary_ = leftSecondary;
+	rightSecondary_ = rightSecondary;
   leftPrimary_->Set(ControlMode::PercentOutput, 0.0);
   rightPrimary_->Set(ControlMode::PercentOutput, 0.0);
   leftSecondary_->Follow(*leftPrimary_);
@@ -18,15 +18,6 @@ Drivetrain::Drivetrain() {
 
   thrustSensitivity_ = 0.5;
   rotateSensitivity_ = 0.7;
-}
-
-
-void Drivetrain::Periodic() {
-  // Implementation of subsystem periodic method goes here.
-}
-
-void Drivetrain::SimulationPeriodic() {
-  // Implementation of subsystem simulation periodic method goes here.
 }
 
 void Drivetrain::TankDrive(double left, double right){
@@ -37,7 +28,6 @@ void Drivetrain::TankDrive(double left, double right){
     right = GetCubicAdjustment(right, rotateSensitivity_);
 
     MaxSpeedAdjustment(left, right);
-
 
     SetDriveValues(left, right);
 }
@@ -80,13 +70,5 @@ double Drivetrain::GetDeadbandAdjustment(double value){
 void Drivetrain::SetDriveValues(double left, double right){
     leftPrimary_->Set(-left);
     rightPrimary_->Set(right);
-	  leftDrivePower_ = -left;
-	  rightDrivePower_ = right;
 }
-
-
-void Drivetrain::Reset(){
-  
-}
-
 

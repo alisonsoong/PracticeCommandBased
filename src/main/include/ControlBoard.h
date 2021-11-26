@@ -24,7 +24,7 @@ class ControlBoard {
               kWristUpButton, kWristDownButton, kRunRollersButton, kReverseRollersButton,
               kControlPanelButton, kTestFarShootButton};
 
-  ControlBoard();
+  ControlBoard(frc::Joystick *leftJoy, frc::Joystick *rightJoy);
   void ReadControls();
   double GetJoystickValue(Joysticks j, Axes a); 
   bool GetDesired(Buttons button);

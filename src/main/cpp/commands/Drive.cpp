@@ -9,32 +9,32 @@
 Drive::Drive(Drivetrain* drivetrain, ControlBoard* humanControl) {
     drivetrain_ = drivetrain;
     humanControl_ = humanControl;
-    
-    
+
 }
 
+// Called just before this Command runs the first time
 void Drive::Initialize() {
 
 }
 
+// Called repeatedly when this Command is scheduled to run
 void Drive::Execute() {
-    double leftJoyX = humanControl_->GetJoystickValue(ControlBoard::Joysticks::kLeftJoy, ControlBoard::Axes::kX);
-    double rightJoyX = humanControl_->GetJoystickValue(ControlBoard::Joysticks::kRightJoy, ControlBoard::Axes::kX);
-    double leftJoyY = humanControl_->GetJoystickValue(ControlBoard::Joysticks::kLeftJoy, ControlBoard::Axes::kY);
-    double rightJoyY = humanControl_->GetJoystickValue(ControlBoard::Joysticks::kRightJoy, ControlBoard::Axes::kY);
-    
-	drivetrain_->TankDrive(leftJoyY, rightJoyY);
+
 }
 
+// Make this return true when this Command no longer needs to run execute()
 bool Drive::IsFinished() {
 	return false;
 }
 
-// void Drive::End() {
+// Called once after isFinished returns true
+void Drive::End() {
 
-// }
+}
 
-// void Drive::Interrupted() {
+// Called when another command which requires one or more of the same
+// subsystems is scheduled to run
+void Drive::Interrupted() {
 	
-// }
+}
 

@@ -7,7 +7,7 @@
 
 #include "ControlBoard.h"
 
-ControlBoard::ControlBoard() {
+ControlBoard::ControlBoard(frc::Joystick *leftJoy, frc::Joystick *rightJoy) {
 	//reset joystick coordinates
     leftJoyX_ = 0.0;
     leftJoyY_ = 0.0;
@@ -15,8 +15,8 @@ ControlBoard::ControlBoard() {
     rightJoyY_ = 0.0;
 
 	//assign joysticks to ports
-    leftJoy_ = new frc::Joystick(LEFT_JOY_USB_PORT);
-    rightJoy_ = new frc::Joystick(RIGHT_JOY_USB_PORT); 
+    leftJoy_ = leftJoy;
+    rightJoy_ = rightJoy; 
 
     ReadControls();
 	printf("end of control board constructor\ns");

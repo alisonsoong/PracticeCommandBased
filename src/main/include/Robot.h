@@ -28,6 +28,11 @@ class Robot : public frc::TimedRobot {
   // doesn't have undefined behavior and potentially crash.
   frc2::Command* curAutoCommand_ = nullptr;
   ControlBoard* humanControl_;
+  Drivetrain* drivetrain_;
+  Drive* drive_;
+  WPI_TalonFX *leftPrimary_, *rightPrimary_, *leftSecondary_, *rightSecondary_;
+  frc::Joystick *leftJoy_, *rightJoy_;
+
 
   RobotContainer container_;
 };

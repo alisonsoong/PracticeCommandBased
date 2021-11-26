@@ -4,8 +4,15 @@
 
 #include "RobotContainer.h"
 
-RobotContainer::RobotContainer() : drive_(&drivetrain_, &humanControl_) {
+RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
+
+  // drivetrain_.SetDefaultCommand(frc2::RunCommand(
+  //   [this] {
+  //   drivetrain_.TankDrive(humanControl_->GetJoystickValue(ControlBoard::Joysticks::kLeftJoy, ControlBoard::Axes::kY),
+  //                 humanControl_->GetJoystickValue(ControlBoard::Joysticks::kRightJoy, ControlBoard::Axes::kY));
+  // },
+  // {&drivetrain_}));
 
   // Configure the button bindings
   ConfigureButtonBindings();

@@ -8,7 +8,26 @@
 #include <frc2/command/CommandScheduler.h>
 
 void Robot::RobotInit() {
-  humanControl_ = new ControlBoard();
+
+  // drivetrain motors
+  leftPrimary_  = new WPI_TalonFX(LEFT_DRIVE_MOTOR_ID);
+	rightPrimary_  = new WPI_TalonFX(LEFT_DRIVE_MOTOR_2_ID);
+	leftSecondary_ = new WPI_TalonFX(RIGHT_DRIVE_MOTOR_ID);
+	rightSecondary_ = new WPI_TalonFX(RIGHT_DRIVE_MOTOR_2_ID);
+
+  // joysticks
+  leftJoy_ = new frc::Joystick(LEFT_JOY_USB_PORT);
+  rightJoy_ = new frc::Joystick(RIGHT_JOY_USB_PORT);
+
+  // human control (control board)
+  humanControl_ = new ControlBoard(leftJoy_, rightJoy_);
+
+  // subsystems
+  drivetrain_ = new Drivetrain(leftPrimary_, rightPrimary_, leftSecondary_, rightSecondary_);
+
+  // commands
+  drive_ = new Drive(drivetrain_, humanControl_);
+  
   
 }
 
@@ -21,7 +40,8 @@ void Robot::RobotInit() {
  * LiveWindow and SmartDashboard integrated updating.
  */
 void Robot::RobotPeriodic() {
-  // frc::CommandScheduler::GetInstance().Run();
+  // frc2::CommandScheduler::getInstanxce().run();
+  
 }
 
 /**
@@ -56,6 +76,8 @@ void Robot::TeleopInit() {
     curAutoCommand_->Cancel();
     curAutoCommand_ = nullptr;
   }
+
+
 }
 
 /**
@@ -63,6 +85,15 @@ void Robot::TeleopInit() {
  */
 void Robot::TeleopPeriodic() {
   humanControl_->ReadControls();
+
+  // get joystick controls, drive
+  double leftJoyX = humanControl_->GetJoystickValue(ControlBoard::Joysticks::kLeftJoy, ControlBoard::Axes::kX);
+  double rightJoyX = humanControl_->GetJoystickValue(ControlBoard::Joysticks::kRightJoy, ControlBoard::Axes::kX);
+  double leftJoyY = humanControl_->GetJoystickValue(ControlBoard::Joysticks::kLeftJoy, ControlBoard::Axes::kY);
+  double rightJoyY = humanControl_->GetJoystickValue(ControlBoard::Joysticks::kRightJoy, ControlBoard::Axes::kY);
+  
+	drivetrain_->TankDrive(leftJoyY, rightJoyY);
+
 }
 
 /**

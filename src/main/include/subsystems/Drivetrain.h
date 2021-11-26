@@ -20,27 +20,43 @@
 
 static const double DEADBAND_MAX = 0.1;
 
-class Drivetrain : public frc2::SubsystemBase {
+class Drivetrain : public frc2::SubsystemBase { // subclassing the abstract class, SubsystemBase
  public: 
-  Drivetrain();
+  
+  /**
+   * Constructor
+   * @param leftPrimary a pointer to a WPI_TalonFX
+   * @param rightPrimary a pointer to a WPI_TalonFX
+   * @param leftSecondary a pointer to a WPI_TalonFX
+   * @param rightSecondary a pointer to a WPI_TalonFX
+   */
+  Drivetrain(WPI_TalonFX *leftPrimary, WPI_TalonFX *rightPrimary, WPI_TalonFX *leftSecondary, WPI_TalonFX *rightSecondary);
 
   /**
-   * Will be called periodically whenever the CommandScheduler runs.
+   * Moves by tank drive
    */
-  void Periodic() override;
-
-  void Reset();
   void TankDrive(double left, double right);
+
+  /**
+   * Cubic adjustment for smoother driving
+   */
   double GetCubicAdjustment(double value, double adjustmentConstant);
+  /**
+   * Deadband adjustment
+   */
   double GetDeadbandAdjustment(double value);
+
+  /**
+   * Adjusts power output values for motors
+   */
   void MaxSpeedAdjustment(double &leftvalue, double &rightvalue);
+
+  /**
+   * Deadband adjustment
+   */
   void SetDriveValues(double left, double right);
 
-  /**
-   * Will be called periodically whenever the CommandScheduler runs during
-   * simulation.
-   */
-  void SimulationPeriodic() override;
+
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be
@@ -48,6 +64,5 @@ class Drivetrain : public frc2::SubsystemBase {
   WPI_TalonFX *leftPrimary_, *rightPrimary_, *leftSecondary_, *rightSecondary_;
   double thrustSensitivity_;
   double rotateSensitivity_;
-  double leftDrivePower_, rightDrivePower_;
 
 };
