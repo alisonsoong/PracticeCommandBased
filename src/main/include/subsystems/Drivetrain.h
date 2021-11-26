@@ -57,7 +57,6 @@ class Drivetrain : public frc2::SubsystemBase { // subclassing the abstract clas
   void SetDriveValues(double left, double right);
 
 
-
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.

@@ -11,9 +11,9 @@ void Robot::RobotInit() {
 
   // drivetrain motors
   leftPrimary_  = new WPI_TalonFX(LEFT_DRIVE_MOTOR_ID);
-	rightPrimary_  = new WPI_TalonFX(LEFT_DRIVE_MOTOR_2_ID);
-	leftSecondary_ = new WPI_TalonFX(RIGHT_DRIVE_MOTOR_ID);
-	rightSecondary_ = new WPI_TalonFX(RIGHT_DRIVE_MOTOR_2_ID);
+  rightPrimary_  = new WPI_TalonFX(LEFT_DRIVE_MOTOR_2_ID);
+  leftSecondary_ = new WPI_TalonFX(RIGHT_DRIVE_MOTOR_ID);
+  rightSecondary_ = new WPI_TalonFX(RIGHT_DRIVE_MOTOR_2_ID);
 
   // joysticks
   leftJoy_ = new frc::Joystick(LEFT_JOY_USB_PORT);
@@ -77,7 +77,6 @@ void Robot::TeleopInit() {
     curAutoCommand_ = nullptr;
   }
 
-
 }
 
 /**
@@ -86,13 +85,13 @@ void Robot::TeleopInit() {
 void Robot::TeleopPeriodic() {
   humanControl_->ReadControls();
 
-  // get joystick controls, drive
+  // get joystick controls, drive (directly using subsystem for now...)
   double leftJoyX = humanControl_->GetJoystickValue(ControlBoard::Joysticks::kLeftJoy, ControlBoard::Axes::kX);
   double rightJoyX = humanControl_->GetJoystickValue(ControlBoard::Joysticks::kRightJoy, ControlBoard::Axes::kX);
   double leftJoyY = humanControl_->GetJoystickValue(ControlBoard::Joysticks::kLeftJoy, ControlBoard::Axes::kY);
   double rightJoyY = humanControl_->GetJoystickValue(ControlBoard::Joysticks::kRightJoy, ControlBoard::Axes::kY);
-  
-	drivetrain_->TankDrive(leftJoyY, rightJoyY);
+
+  drivetrain_->TankDrive(leftJoyY, rightJoyY);
 
 }
 

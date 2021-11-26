@@ -19,7 +19,7 @@ void Drive::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void Drive::Execute() {
-
+    // does nothing so far...
 }
 
 // Make this return true when this Command no longer needs to run execute()
@@ -32,8 +32,7 @@ void Drive::End() {
 
 }
 
-// Called when another command which requires one or more of the same
-// subsystems is scheduled to run
+// Called when another command which requires one or more of the same subsystems is scheduled to run
 void Drive::Interrupted() {
 	
 }

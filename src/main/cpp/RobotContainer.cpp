@@ -7,6 +7,7 @@
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
 
+  // not used :/
   // drivetrain_.SetDefaultCommand(frc2::RunCommand(
   //   [this] {
   //   drivetrain_.TankDrive(humanControl_->GetJoystickValue(ControlBoard::Joysticks::kLeftJoy, ControlBoard::Axes::kY),

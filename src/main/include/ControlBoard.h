@@ -24,11 +24,24 @@ class ControlBoard {
               kWristUpButton, kWristDownButton, kRunRollersButton, kReverseRollersButton,
               kControlPanelButton, kTestFarShootButton};
 
+  /**
+   * Constructor
+   * @param leftJoy a Joystick
+   * @param rightJoy a Joystick
+   */
   ControlBoard(frc::Joystick *leftJoy, frc::Joystick *rightJoy);
+
+  /**
+   * Read controls (joysticks for now)
+   */
   void ReadControls();
+
+  /**
+   * Gets a value of a joystick
+   * @param j (kLeftJoy or kRightJoy)
+   * @param a (kX, kY, kZ, kLT)
+   */
   double GetJoystickValue(Joysticks j, Axes a); 
-  bool GetDesired(Buttons button);
-  bool JustPressed(Buttons button);
 
   ~ControlBoard();
 

@@ -15,6 +15,7 @@
  */
 
 
+// Drive Encoders
 static const int LEFT_DRIVE_ENCODER_YELLOW_PWM_PORT      = 6;
 static const int RIGHT_DRIVE_ENCODER_YELLOW_PWM_PORT     = 8;
 static const int LEFT_DRIVE_ENCODER_RED_PWM_PORT         = 7;

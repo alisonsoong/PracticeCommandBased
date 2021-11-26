@@ -8,13 +8,13 @@
 #include "ControlBoard.h"
 
 ControlBoard::ControlBoard(frc::Joystick *leftJoy, frc::Joystick *rightJoy) {
-	//reset joystick coordinates
+	// reset joystick coordinates
     leftJoyX_ = 0.0;
     leftJoyY_ = 0.0;
     rightJoyX_ = 0.0;
     rightJoyY_ = 0.0;
 
-	//assign joysticks to ports
+	// assign joysticks to ports
     leftJoy_ = leftJoy;
     rightJoy_ = rightJoy; 
 
@@ -22,7 +22,7 @@ ControlBoard::ControlBoard(frc::Joystick *leftJoy, frc::Joystick *rightJoy) {
 	printf("end of control board constructor\ns");
 }
 
-//update joystick coordinates
+// update joystick coordinates
 double ControlBoard::GetJoystickValue(Joysticks j, Axes a) {
 	switch (j) {
 	  case (kLeftJoy):
@@ -51,7 +51,7 @@ double ControlBoard::GetJoystickValue(Joysticks j, Axes a) {
 	return 0;
 }
 
-//update variables
+// update control variables
 void ControlBoard::ReadControls(){
     leftJoyX_ = leftJoy_->GetX();
 	leftJoyY_ = -leftJoy_->GetY();

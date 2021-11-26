@@ -33,10 +33,10 @@ class Drive
 
   /**
    * Creates a new Drive command.
-   *
    * @param drivetrain Subsystem for drivetrain
    */
   explicit Drive(Drivetrain* drivetrain, ControlBoard* humanControl);
+  
   void Initialize() override;
 	void Execute() override;
 	bool IsFinished() override;
