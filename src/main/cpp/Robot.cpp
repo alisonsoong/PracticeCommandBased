@@ -26,7 +26,7 @@ void Robot::RobotInit() {
   drivetrain_ = new Drivetrain(leftPrimary_, rightPrimary_, leftSecondary_, rightSecondary_);
 
   // commands
-  drive_ = new Drive(drivetrain_, humanControl_);
+  // drive_ = new Drive(drivetrain_, humanControl_);
   
   
 }

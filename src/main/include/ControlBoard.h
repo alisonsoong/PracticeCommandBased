@@ -15,14 +15,6 @@ class ControlBoard {
  public:
   enum Joysticks{kLeftJoy, kRightJoy};
 	enum Axes{kX, kY, kZ, kLT};
-  enum Buttons{kAlignButton, kGearShiftButton, 
-              kIntakeSeriesButton, kIndexSeriesButton, 
-              kShootClosePrepButton, kShootFarPrepButton, kShootingButton, 
-              kClimbRightElevatorUpButton, kClimbRightElevatorDownButton, 
-              kClimbLeftElevatorUpButton, kClimbLeftElevatorDownButton, 
-              kUndoElevatorButton,
-              kWristUpButton, kWristDownButton, kRunRollersButton, kReverseRollersButton,
-              kControlPanelButton, kTestFarShootButton};
 
   /**
    * Constructor

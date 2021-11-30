@@ -33,7 +33,7 @@ class Robot : public frc::TimedRobot {
   Drivetrain* drivetrain_;
 
   // commands
-  Drive* drive_;
+  // Drive* drive_;
 
   // motors
   WPI_TalonFX *leftPrimary_, *rightPrimary_, *leftSecondary_, *rightSecondary_;
