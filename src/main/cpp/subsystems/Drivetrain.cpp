@@ -15,9 +15,14 @@ Drivetrain::Drivetrain(WPI_TalonFX *leftPrimary, WPI_TalonFX *rightPrimary, WPI_
   rightPrimary_->Set(ControlMode::PercentOutput, 0.0);
   leftSecondary_->Follow(*leftPrimary_);
   rightSecondary_->Follow(*rightPrimary_);
+  // leftSecondary_->SetInverted(false);
+  // leftPrimary_->SetInverted(false);
 
-  thrustSensitivity_ = 0.5;
-  rotateSensitivity_ = 0.7;
+  rightJoystickXLastValue_ = 0.0;
+  rightJoystickXCurrValue_ = 0.0;
+
+  thrustSensitivity_ = 0;
+  rotateSensitivity_ = 0;
 }
 
 void Drivetrain::TankDrive(double left, double right){
@@ -28,8 +33,37 @@ void Drivetrain::TankDrive(double left, double right){
   right = GetCubicAdjustment(right, rotateSensitivity_);
 
   MaxSpeedAdjustment(left, right);
-
+  // std::cout << "left: "  << left << "\nright:" << right  << "\n" << std::flush;
+  FrictionAdjustment(left,right, true);
+  
   SetDriveValues(left, right);
+}
+
+void Drivetrain::ArcadeDrive(double thrust, double rotate){
+    // adjusting sensitivity for turn
+    thrust = GetDeadbandAdjustment(thrust);
+    thrust = GetCubicAdjustment(thrust, thrustSensitivity_);
+    rotate = GetDeadbandAdjustment(rotate);
+    rotate = GetCubicAdjustment(rotate, rotateSensitivity_);
+    
+    double rotationValueAdjustment = GetRotateVelocityAdjustment(rotate);
+
+    double leftOutput, rightOutput;
+
+    // depending on drive mode, calculate outputs and set motors in drivetrain
+    // if(anaModeEntry_.GetBoolean(true) || (!anaModeEntry_.GetBoolean(true) && thrust >= 0.0)){
+		leftOutput = thrust + rotate;		
+		rightOutput = thrust - rotate*(1+rotationValueAdjustment);
+    
+	// } else {
+	// 	leftOutput = thrust - rotate;
+	// 	rightOutput = thrust + rotate*(1+rotationValueAdjustment);
+	// }
+
+    MaxSpeedAdjustment(leftOutput, rightOutput);
+    // FrictionAdjustment(leftOutput, rightOutput, true);
+    
+    SetDriveValues(leftOutput, rightOutput);
 }
 
 void Drivetrain::MaxSpeedAdjustment(double &leftvalue, double &rightvalue){
@@ -72,5 +106,13 @@ double Drivetrain::GetDeadbandAdjustment(double value){
 void Drivetrain::SetDriveValues(double left, double right){
     leftPrimary_->Set(-left);
     rightPrimary_->Set(right);
+}
+
+// adjusts rotation for turns in arcade drive
+double Drivetrain::GetRotateVelocityAdjustment(double value){
+    rightJoystickXLastValue_ = rightJoystickXCurrValue_;
+    rightJoystickXCurrValue_ = value;
+    double time = 60.0/50; // time between last iteration and current
+    return abs(rightJoystickXCurrValue_-rightJoystickXLastValue_)/time;
 }
 

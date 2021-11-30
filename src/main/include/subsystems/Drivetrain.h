@@ -37,6 +37,8 @@ class Drivetrain : public frc2::SubsystemBase { // subclassing the abstract clas
    */
   void TankDrive(double left, double right);
 
+  void ArcadeDrive(double thrust, double rotate);
+
   /**
    * Cubic adjustment for smoother driving
    */
@@ -56,6 +58,9 @@ class Drivetrain : public frc2::SubsystemBase { // subclassing the abstract clas
    */
   void SetDriveValues(double left, double right);
 
+  double GetRotateVelocityAdjustment(double value);
+
+  
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be
@@ -63,5 +68,7 @@ class Drivetrain : public frc2::SubsystemBase { // subclassing the abstract clas
   WPI_TalonFX *leftPrimary_, *rightPrimary_, *leftSecondary_, *rightSecondary_;
   double thrustSensitivity_;
   double rotateSensitivity_;
+  double rightJoystickXLastValue_;
+  double rightJoystickXCurrValue_;
 
 };

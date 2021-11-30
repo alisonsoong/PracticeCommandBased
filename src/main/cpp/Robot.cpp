@@ -11,8 +11,8 @@ void Robot::RobotInit() {
 
   // drivetrain motors
   leftPrimary_  = new WPI_TalonFX(LEFT_DRIVE_MOTOR_ID);
-  rightPrimary_  = new WPI_TalonFX(LEFT_DRIVE_MOTOR_2_ID);
-  leftSecondary_ = new WPI_TalonFX(RIGHT_DRIVE_MOTOR_ID);
+  rightPrimary_  = new WPI_TalonFX(RIGHT_DRIVE_MOTOR_ID);
+  leftSecondary_ = new WPI_TalonFX(LEFT_DRIVE_MOTOR_2_ID);
   rightSecondary_ = new WPI_TalonFX(RIGHT_DRIVE_MOTOR_2_ID);
 
   // joysticks
@@ -92,6 +92,7 @@ void Robot::TeleopPeriodic() {
   double rightJoyY = humanControl_->GetJoystickValue(ControlBoard::Joysticks::kRightJoy, ControlBoard::Axes::kY);
 
   drivetrain_->TankDrive(leftJoyY, rightJoyY);
+  // drivetrain_->ArcadeDrive(leftJoyY, rightJoyX);
 
 }
 
