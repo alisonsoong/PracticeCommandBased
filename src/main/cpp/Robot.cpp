@@ -15,13 +15,6 @@ void Robot::RobotInit() {
   leftSecondary_ = new WPI_TalonFX(LEFT_DRIVE_MOTOR_2_ID);
   rightSecondary_ = new WPI_TalonFX(RIGHT_DRIVE_MOTOR_2_ID);
 
-  // joysticks
-  leftJoy_ = new frc::Joystick(LEFT_JOY_USB_PORT);
-  rightJoy_ = new frc::Joystick(RIGHT_JOY_USB_PORT);
-
-  // human control (control board)
-  humanControl_ = new ControlBoard(leftJoy_, rightJoy_);
-
   // subsystems
   drivetrain_ = new Drivetrain(leftPrimary_, rightPrimary_, leftSecondary_, rightSecondary_);
 
@@ -40,7 +33,7 @@ void Robot::RobotInit() {
  * LiveWindow and SmartDashboard integrated updating.
  */
 void Robot::RobotPeriodic() {
-  // frc2::CommandScheduler::getInstanxce().run();
+  // frc2::CommandScheduler::getInstance().run();
   
 }
 
@@ -76,6 +69,13 @@ void Robot::TeleopInit() {
     curAutoCommand_->Cancel();
     curAutoCommand_ = nullptr;
   }
+
+  // joysticks
+  leftJoy_ = new frc::Joystick(LEFT_JOY_USB_PORT);
+  rightJoy_ = new frc::Joystick(RIGHT_JOY_USB_PORT);
+
+  // human control (control board)
+  humanControl_ = new ControlBoard(leftJoy_, rightJoy_);
 
 }
 

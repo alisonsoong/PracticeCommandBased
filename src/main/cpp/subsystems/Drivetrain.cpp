@@ -32,9 +32,9 @@ Drivetrain::Drivetrain(WPI_TalonFX *leftPrimary, WPI_TalonFX *rightPrimary, WPI_
 void Drivetrain::TankDrive(double left, double right){
   // adjusting sensitivity
   left = GetDeadbandAdjustment(left);
-  left = GetCubicAdjustment(left, thrustSensitivity_);
+  // left = GetCubicAdjustment(left, thrustSensitivity_);
   right = GetDeadbandAdjustment(right);
-  right = GetCubicAdjustment(right, rotateSensitivity_);
+  // right = GetCubicAdjustment(right, rotateSensitivity_);
 
   MaxSpeedAdjustment(left, right);
 
@@ -44,9 +44,9 @@ void Drivetrain::TankDrive(double left, double right){
 void Drivetrain::ArcadeDrive(double thrust, double rotate){
     // adjusting sensitivity for turn
     thrust = GetDeadbandAdjustment(thrust);
-    thrust = GetCubicAdjustment(thrust, thrustSensitivity_);
+    // thrust = GetCubicAdjustment(thrust, thrustSensitivity_);
     rotate = GetDeadbandAdjustment(rotate);
-    rotate = GetCubicAdjustment(rotate, rotateSensitivity_);
+    // rotate = GetCubicAdjustment(rotate, rotateSensitivity_);
     
     double rotationValueAdjustment = GetRotateVelocityAdjustment(rotate);
 
