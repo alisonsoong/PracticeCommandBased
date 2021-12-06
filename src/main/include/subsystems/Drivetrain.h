@@ -10,12 +10,12 @@
 #include <AHRS.h>
 #include "ctre/Phoenix.h"
 #include <rev/CANSparkMax.h>
-#include <frc/DriverStation.h>
-#include <networktables/NetworkTableEntry.h>
-#include <frc/shuffleboard/Shuffleboard.h>
-#include <frc/shuffleboard/ShuffleboardTab.h>
-#include <networktables/NetworkTableEntry.h>
-#include <math.h>
+// #include <frc/DriverStation.h>
+// #include <networktables/NetworkTableEntry.h>
+// #include <frc/shuffleboard/Shuffleboard.h>
+// #include <frc/shuffleboard/ShuffleboardTab.h>
+// #include <networktables/NetworkTableEntry.h>
+// #include <math.h>
 #define PI 3.141592
 
 static const double DEADBAND_MAX = 0.1;

@@ -29,12 +29,18 @@ Drivetrain::Drivetrain(WPI_TalonFX *leftPrimary, WPI_TalonFX *rightPrimary, WPI_
   rotateSensitivity_ = 0;
 }
 
+// sets drive outputs
+void Drivetrain::SetDriveValues(double left, double right){
+    leftPrimary_->Set(-left);
+    rightPrimary_->Set(right);
+}
+
 void Drivetrain::TankDrive(double left, double right){
   // adjusting sensitivity
   left = GetDeadbandAdjustment(left);
-  // left = GetCubicAdjustment(left, thrustSensitivity_);
+  left = GetCubicAdjustment(left, thrustSensitivity_);
   right = GetDeadbandAdjustment(right);
-  // right = GetCubicAdjustment(right, rotateSensitivity_);
+  right = GetCubicAdjustment(right, rotateSensitivity_);
 
   MaxSpeedAdjustment(left, right);
 
@@ -44,9 +50,9 @@ void Drivetrain::TankDrive(double left, double right){
 void Drivetrain::ArcadeDrive(double thrust, double rotate){
     // adjusting sensitivity for turn
     thrust = GetDeadbandAdjustment(thrust);
-    // thrust = GetCubicAdjustment(thrust, thrustSensitivity_);
+    thrust = GetCubicAdjustment(thrust, thrustSensitivity_);
     rotate = GetDeadbandAdjustment(rotate);
-    // rotate = GetCubicAdjustment(rotate, rotateSensitivity_);
+    rotate = GetCubicAdjustment(rotate, rotateSensitivity_);
     
     double rotationValueAdjustment = GetRotateVelocityAdjustment(rotate);
 
@@ -101,10 +107,4 @@ double Drivetrain::GetRotateVelocityAdjustment(double value){
     return abs(rightJoystickXCurrValue_-rightJoystickXLastValue_)/time;
 }
 
-
-// sets drive outputs
-void Drivetrain::SetDriveValues(double left, double right){
-    leftPrimary_->Set(-left);
-    rightPrimary_->Set(right);
-}
 
